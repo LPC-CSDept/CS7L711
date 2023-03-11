@@ -9,14 +9,6 @@ def main():
     ##################################################
     # Comlete your code here
     ##################################################
-    for i in range(len(numbers)):
-        total = 0
-        for j in range(len(numbers[i])):
-            total += numbers[i][j]
-        rsum.append(total)
-        # main.rsum.append(total)
-    print(rsum)
-    # print(main.rsum)
 
 
 if __name__ == '__main__':
