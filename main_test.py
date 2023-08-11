@@ -7,26 +7,30 @@ import re
 
 
 def test_main_1():
-    captureOut = io.StringIO()
-    sys.stdout = captureOut
-    # datastr = '2'
-    # sys.stdin = io.StringIO(datastr)
+    numbers = [[11, 12, 13, 14, 15],
+               [21, 22, 23, 24, 25],
+               [31, 32, 33, 34, 35]]
+    result = main.getSumRow(numbers)
+    print(result)
 
-    main.main()
-    sys.stdout = sys.__stdout__
-    print('Captured ', captureOut.getvalue())
-    lines = captureOut.getvalue().split('\n')
-    print(lines)
+    assert len(result) == 3
+    assert result[0] == 65
+    assert result[1] == 115
+    assert result[2] == 165
 
-    # regex_string = r'[\w,\W]*' + str(minval) + r'[\w,\W]*'
-    # res = re.search(regex_string, lines[0])
-    # regex_string = r'[\w,\W]*165[\w,\W]*'
-    # res = re.search(regex_string, lines[0])
-    # assert res != None
-    # print(res.group())
-    # assert main.main.rsum[0] == 65
-    # assert main.main.rsum[1] == 115
-    # assert main.main.rsum[2] == 165
-    assert main.rsum[0] == 65
-    assert main.rsum[1] == 115
-    assert main.rsum[2] == 165
+
+def test_main_2():
+    import random
+    rownum = random.randint(5, 10)
+    colnum = random.randint(3, 7)
+
+    numbers = [[0] * colnum for i in range(rownum)]
+    for i in range(rownum):
+        for j in range(colnum):
+            numbers[i][j] = random.randint(0, 10)
+    result = main.getSumRow(numbers)
+    print(result)
+
+    assert len(result) == rownum
+    for i in range(rownum):
+        assert result[i] == sum(numbers[i])
